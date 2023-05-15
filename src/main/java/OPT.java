@@ -48,9 +48,9 @@ public class OPT extends MemoryReplacement_P {
                         }
 
                     }
-                    list[i].remove(index);
-                    list[i].add(index, refStr.charAt(i));
-                    migrate.put(i, index);
+                        list[i].remove(index);
+                        list[i].add(index, refStr.charAt(i));
+                        migrate.put(i, index);
                 } else if (list[i].contains(refStr.charAt(i))) { // hit
                     hit.put(i, list[i].indexOf(refStr.charAt(i)));
                 }

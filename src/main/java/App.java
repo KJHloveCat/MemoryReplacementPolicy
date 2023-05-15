@@ -43,14 +43,14 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 String ref = RefString.getText();
                 int row = Integer.parseInt(Fnum.getText());
-
                 int selection = policySelection.getSelectedIndex();
+
                 if(selection == 0){
-                    FIFO fifo = new FIFO(RefString.getText(), Integer.parseInt(Fnum.getText()));
+                    FIFO fifo = new FIFO(ref, Integer.parseInt(Fnum.getText()));
                     createTable(ref, row, fifo.Run(), fifo.fault, fifo.migrate, fifo.hit);
                 }
                 else if (selection == 1){
-                    OPT opt = new OPT(RefString.getText(), Integer.parseInt(Fnum.getText()));
+                    OPT opt = new OPT(ref, Integer.parseInt(Fnum.getText()));
                     createTable(ref, row, opt.Run(), opt.fault, opt.migrate, opt.hit);
                     System.out.println("OPT 실행");
                 }
