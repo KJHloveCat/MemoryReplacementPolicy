@@ -49,6 +49,11 @@ public class App {
                     FIFO fifo = new FIFO(RefString.getText(), Integer.parseInt(Fnum.getText()));
                     createTable(ref, row, fifo.Run(), fifo.fault, fifo.migrate, fifo.hit);
                 }
+                else if (selection == 1){
+                    OPT opt = new OPT(RefString.getText(), Integer.parseInt(Fnum.getText()));
+                    createTable(ref, row, opt.Run(), opt.fault, opt.migrate, opt.hit);
+                    System.out.println("OPT 실행");
+                }
             }
         });
     }
@@ -110,6 +115,7 @@ public class App {
     }
     public static void main(String args[]) {
         JFrame frame = new JFrame("App");
+        frame.setTitle("Memory Replacement Policy - 21812062");
         frame.setContentPane(new App().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

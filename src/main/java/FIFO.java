@@ -1,13 +1,7 @@
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class FIFO {
-    String refStr;
-    int refN;
-    int frame;
-    HashMap<Integer, Integer> fault = new HashMap<>();
-    HashMap<Integer, Integer> migrate = new HashMap<>();
-    HashMap<Integer, Integer> hit = new HashMap<>();
+public class FIFO extends MemoryReplacement_P{
 
     FIFO(String refStr, int frame) {
         this.refStr = refStr;
@@ -17,12 +11,15 @@ public class FIFO {
 
     public LinkedList<Character>[] Run() {
         LinkedList<Character>[] list = new LinkedList[refN];
+
         for (int i = 0; i < refN; i++) {
             if (list[i] == null) {
                 list[i] = new LinkedList<Character>();
             }
+
             if (i != 0) {
                 list[i].addAll(list[i - 1]);
+
                 if(!list[i].contains(refStr.charAt(i)) && list[i - 1].size() != frame){
                     list[i].add(refStr.charAt(i));
                     fault.put(i, list[i].size()-1);
