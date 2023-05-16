@@ -14,6 +14,7 @@ public class OPT extends MemoryReplacement_P {
         LinkedList<Character>[] list = new LinkedList[refN];
 
         for (int i = 0; i < refN; i++) {
+            char currentChar = refStr.charAt(i);
             if (list[i] == null) {
                 list[i] = new LinkedList<Character>();
             }
@@ -21,32 +22,23 @@ public class OPT extends MemoryReplacement_P {
             if (i != 0) {
                 list[i].addAll(list[i - 1]);
 
-                if (!list[i].contains(refStr.charAt(i)) && list[i - 1].size() != frame) {
-                    list[i].add(refStr.charAt(i));
+                if (!list[i].contains(currentChar) && list[i - 1].size() != frame) {
+                    list[i].add(currentChar);
                     fault.put(i, list[i].size()-1);
-                } else if (!list[i].contains(refStr.charAt(i)) && list[i - 1].size() == frame) {
-                    int index = -1;
+                } else if (!list[i].contains(currentChar) && list[i - 1].size() == frame) {
+                    int index = 0;
+                    int maxLeft = 0;
+                    boolean fixed = false;
+                    String leftStr = refStr.substring(i);
                     for (int j = 0; j < frame; j++) {
-                        String str = refStr.substring(i);
-
-                        boolean fixed = false;
-                        int min_Count_Temp = 0;
-                        for (int k = 0; k < frame; k++) {
-                            Character fStr = list[i - 1].get(k);
-                            int char_Count = str.length() - str.replace(String.valueOf(fStr), "").length();
-
-                            if (char_Count == 0 && !fixed) {
-                                index = k;
-                                fixed = true;
-                            } else if (char_Count != 0 && !fixed) {
-
-                                if (char_Count <= min_Count_Temp) {
-                                    index = k;
-                                    min_Count_Temp = char_Count;
-                                }
-                            }
+                        int left = leftStr.indexOf(list[i].get(j));
+                        if(left == -1){
+                            fixed = true;
+                            index = j;
+                        } else if(maxLeft < left && !fixed) {
+                            maxLeft = left;
+                            index = j;
                         }
-
                     }
                         list[i].remove(index);
                         list[i].add(index, refStr.charAt(i));
