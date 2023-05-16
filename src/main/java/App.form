@@ -44,6 +44,7 @@
                   <model>
                     <item value="FIFO"/>
                     <item value="OPT"/>
+                    <item value="LRU"/>
                   </model>
                 </properties>
               </component>

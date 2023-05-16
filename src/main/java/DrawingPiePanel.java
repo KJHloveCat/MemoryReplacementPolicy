@@ -30,20 +30,30 @@ public class DrawingPiePanel extends JPanel {
         g.setColor(Color.GREEN);
         g.fillArc(15, 15, 200, 200, arc1 + arc2, 360-(arc1 + arc2));
 
-        Font f = new Font("Arial", Font.PLAIN, 18);
+        Font f = new Font("Arial", Font.BOLD, 15);
         g.setFont(f);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(fault), 175, 230);
+        g.drawString(String.valueOf(fault), 10, 230);
         g.setColor(Color.RED);
-        g.drawString("Fault", 200, 230);
+        g.drawString("Fault", 35, 230);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(migrate), 175, 250);
+        g.drawString(String.valueOf(migrate), 10, 250);
         g.setColor(Color.orange);
-        g.drawString("Migrate", 200, 250);
+        g.drawString("Migrate", 35, 250);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(hit), 175, 270);
+        g.drawString(String.valueOf(hit), 10, 270);
         g.setColor(Color.green);
-        g.drawString("Hit", 200, 270);
+        g.drawString("Hit", 35, 270);
+
+        g.setColor(Color.black);
+        Font f2 = new Font("Arial", Font.PLAIN, 14);
+        g.setFont(f2);
+        g.drawString("Page Fault Rate (%) = ", 80, 270);
+        double FaultRate = (double)(migrate+fault)/total * 100;
+        String faulted = String.valueOf(Math.round(FaultRate));
+        faulted = faulted.concat("%");
+
+        g.drawString(faulted, 225, 270);
     }
 
     void setNumbers(int fault, int migrate, int hit) {

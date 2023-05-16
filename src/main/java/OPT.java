@@ -59,7 +59,6 @@ public class OPT extends MemoryReplacement_P {
                 fault.put(i, refStr.indexOf(refStr.charAt(i)));
             }
 
-            System.out.println("TESt1" + list[i]);
         }
         return list;
     }
