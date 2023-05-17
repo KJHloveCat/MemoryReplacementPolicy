@@ -35,10 +35,6 @@ public class FIFO extends MemoryReplacement_P{
                 fault.put(i,refStr.indexOf(refStr.charAt(i)));
             }
         }
-        System.out.println(fault);
-        System.out.println(migrate);
-        System.out.println(hit);
-
         return list;
     }
 

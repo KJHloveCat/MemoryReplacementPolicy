@@ -50,8 +50,8 @@ public class ColorRenderer extends DefaultTableCellRenderer{
 
         for(int a:migrate.keySet()){
             if(row == migrate.get(a) && column == a){
-                comp.setBackground(Color.orange);
-                comp.setForeground(Color.BLACK);
+                comp.setBackground(new Color(128,0,128));
+                comp.setForeground(Color.WHITE);
             }
         }
 

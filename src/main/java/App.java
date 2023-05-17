@@ -69,6 +69,12 @@ public class App {
                 } else if (selection == 2) {
                     LRU lru = new LRU(ref, Integer.parseInt(frame));
                     createTable(ref, row, lru.Run(), lru.fault, lru.migrate, lru.hit);
+                } else if (selection == 3) {
+                    LFU lfu = new LFU(ref, Integer.parseInt(frame));
+                    createTable(ref, row, lfu.Run(), lfu.fault, lfu.migrate, lfu.hit);
+                } else if (selection == 4) {
+                    MFU mfu = new MFU(ref, Integer.parseInt(frame));
+                    createTable(ref, row, mfu.Run(), mfu.fault, mfu.migrate, mfu.hit);
                 }
             }
         });

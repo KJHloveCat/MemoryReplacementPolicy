@@ -25,7 +25,7 @@ public class DrawingPiePanel extends JPanel {
 
         g.setColor(Color.RED);
         g.fillArc(15, 15, 200, 200, 0, arc1);
-        g.setColor(Color.orange);
+        g.setColor(new Color(128,0,128));
         g.fillArc(15, 15, 200, 200, arc1,arc2);
         g.setColor(Color.GREEN);
         g.fillArc(15, 15, 200, 200, arc1 + arc2, 360-(arc1 + arc2));
@@ -38,7 +38,7 @@ public class DrawingPiePanel extends JPanel {
         g.drawString("Fault", 35, 230);
         g.setColor(Color.BLACK);
         g.drawString(String.valueOf(migrate), 10, 250);
-        g.setColor(Color.orange);
+        g.setColor(new Color(128,0,128));
         g.drawString("Migrate", 35, 250);
         g.setColor(Color.BLACK);
         g.drawString(String.valueOf(hit), 10, 270);
