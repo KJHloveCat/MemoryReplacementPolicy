@@ -24,36 +24,36 @@ public class DrawingPiePanel extends JPanel {
         int arc2 = (int) 360.0 * migrate / total;
 
         g.setColor(Color.RED);
-        g.fillArc(15, 15, 200, 200, 0, arc1);
+        g.fillArc(70, 20, 200, 200, 0, arc1);
         g.setColor(new Color(128,0,128));
-        g.fillArc(15, 15, 200, 200, arc1,arc2);
+        g.fillArc(70, 20, 200, 200, arc1,arc2);
         g.setColor(Color.GREEN);
-        g.fillArc(15, 15, 200, 200, arc1 + arc2, 360-(arc1 + arc2));
+        g.fillArc(70, 20, 200, 200, arc1 + arc2, 360-(arc1 + arc2));
 
-        Font f = new Font("Arial", Font.BOLD, 15);
+        Font f = new Font("Arial", Font.BOLD, 18);
         g.setFont(f);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(fault), 10, 230);
+        g.drawString(String.valueOf(fault), 20, 230);
         g.setColor(Color.RED);
-        g.drawString("Fault", 35, 230);
+        g.drawString("Fault", 45, 230);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(migrate), 10, 250);
+        g.drawString(String.valueOf(migrate), 20, 250);
         g.setColor(new Color(128,0,128));
-        g.drawString("Migrate", 35, 250);
+        g.drawString("Migrate", 45, 250);
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(hit), 10, 270);
+        g.drawString(String.valueOf(hit), 20, 270);
         g.setColor(Color.green);
-        g.drawString("Hit", 35, 270);
+        g.drawString("Hit", 45, 270);
 
         g.setColor(Color.black);
-        Font f2 = new Font("Arial", Font.PLAIN, 14);
+        Font f2 = new Font("Arial", Font.PLAIN, 16);
         g.setFont(f2);
-        g.drawString("Page Fault Rate (%) = ", 80, 270);
+        g.drawString("Page Fault Rate (%) = ", 130, 270);
         double FaultRate = (double)(migrate+fault)/total * 100;
         String faulted = String.valueOf(Math.round(FaultRate));
         faulted = faulted.concat("%");
 
-        g.drawString(faulted, 225, 270);
+        g.drawString(faulted, 300, 270);
     }
 
     void setNumbers(int fault, int migrate, int hit) {
