@@ -35,8 +35,8 @@ public class LFU extends MemoryReplacement_P{
 
                     for(int k=1; k<frame; k++){
                         int temp = CountChar(leftStr, list[i].get(k));
-                        if(maxNum > temp){
-                            temp = maxNum;
+                        if(temp < maxNum){
+                            maxNum = temp;
                             maxNum_idx = k;
                         }
                     }

@@ -29,13 +29,12 @@ public class OPT extends MemoryReplacement_P {
                     int index = 0;
                     int maxLeft = 0;
                     boolean fixed = false;
-                    String leftStr = refStr.substring(i);
+                    String rightStr = refStr.substring(i);
                     for (int j = 0; j < frame; j++) {
-                        int left = leftStr.indexOf(list[i].get(j));
+                        int left = rightStr.indexOf(list[i].get(j));
                         if(left == -1 && !fixed){
                             fixed = true;
                             index = j;
-                            System.out.println("fixed"+ index);
                         } else if(maxLeft < left && !fixed) {
                             maxLeft = left;
                             index = j;

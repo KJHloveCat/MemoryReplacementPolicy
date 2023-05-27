@@ -66,6 +66,7 @@ public class App {
                 if (randomStr != null){
 
                     spanel1.setVisible(false);
+                    table1.setVisible(false);
                         int fault[] = new int[5];
                         int total[] = new int[5];
                         String name[] = {"FIFO", "OPT", "LRU", "LFU", "MFU"};
@@ -160,6 +161,7 @@ public class App {
 
     private void createTable(String ref, int row, LinkedList[] list, HashMap fault, HashMap migrate, HashMap hit) {
         spanel1.setVisible(true);
+        table1.setVisible(true);
         table1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 20));
         table1.getTableHeader().setReorderingAllowed(false);
         table1.getTableHeader().setResizingAllowed(false);

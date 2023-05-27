@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MFU extends MemoryReplacement_P{
@@ -15,6 +16,8 @@ public class MFU extends MemoryReplacement_P{
     @Override
     public LinkedList<Character>[] Run() {
         LinkedList<Character>[] list = new LinkedList[refN];
+        ArrayList<Integer> notUsed = new ArrayList<>(frame);
+        ArrayList<Integer> hitList = new ArrayList<>(frame);
 
         for (int i = 0; i < refN; i++) {
             if (list[i] == null) {
@@ -27,28 +30,27 @@ public class MFU extends MemoryReplacement_P{
                 if (!list[i].contains(refStr.charAt(i)) && list[i - 1].size() != frame) {
                     list[i].add(refStr.charAt(i));
                     fault.put(i, list[i].size() - 1);
+                    notUsed.add(0);
+                    hitList.add(0);
                 } else if (!list[i].contains(refStr.charAt(i)) && list[i - 1].size() == frame) { // migrate
 
                     int maxNum_idx = 0;
-                    String leftStr = refStr.substring(0, i);
-                    int maxNum = CountChar(leftStr, list[i].get(0));
+                    int maxHit = hitList.get(0);
 
-                    for(int k=1; k<frame; k++){
-                        int temp = CountChar(leftStr, list[i].get(k));
-                        if(maxNum < temp){
-                            temp = maxNum;
-                            maxNum_idx = k;
+                    for(int j=0; j<frame; j++){
+                        int temp = hitList.get(j);
+
+                        if(maxHit < temp){
+                            maxNum_idx = j;
+                            maxHit = temp;
                         }
                     }
 
-                    StringBuffer sb = new StringBuffer(leftStr);
-                    String reverseLStr = sb.reverse().toString();
-
-                    int max = reverseLStr.indexOf(list[i].get(maxNum_idx));
+                    int maxNotUsed = notUsed.get(maxNum_idx);
                     for(int j=maxNum_idx; j<frame; j++){
-                        int temp = reverseLStr.indexOf(list[i].get(j));
-                        if(max < temp && maxNum == CountChar(leftStr, list[i].get(j))){
-                            max = temp;
+                        int temp = notUsed.get(j);
+                        if(maxNotUsed < temp && maxHit == hitList.get(j)){
+                            maxNotUsed = temp;
                             maxNum_idx = j;
                         }
                     }
@@ -56,15 +58,24 @@ public class MFU extends MemoryReplacement_P{
                     list[i].remove(maxNum_idx);
                     list[i].add(maxNum_idx, refStr.charAt(i));
                     migrate.put(i, maxNum_idx);
+                    notUsed.set(maxNum_idx, 0);
+                    hitList.set(maxNum_idx, 0);
                 } else if (list[i].contains(refStr.charAt(i))) { // hit
                     int index = list[i].indexOf(refStr.charAt(i));
                     hit.put(i, index);
+                    notUsed.set(index, 0);
+                    hitList.set(index, hitList.get(index) + 1);
                 }
             } else { // fault
                 list[i].add(refStr.charAt(i));
                 fault.put(i, refStr.indexOf(refStr.charAt(i)));
+                notUsed.add(0);
+                hitList.add(0);
             }
 
+            for(int j=0; j<notUsed.size(); j++){
+                notUsed.set(j, notUsed.get(j)+1);
+            }
 
         }
         return list;
