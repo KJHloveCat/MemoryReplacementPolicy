@@ -41,7 +41,7 @@ public class App {
                 int rightLimit = 90;
 
                 Random random = new Random();
-                int targetStringLength = random.nextInt(15) + 5;
+                int targetStringLength = random.nextInt(25) + 5;
                 String generatedString = random.ints(leftLimit, rightLimit + 1).limit(targetStringLength).collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
                 RefString.setText(generatedString);
             }
